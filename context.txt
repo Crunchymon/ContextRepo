@@ -1,0 +1,77 @@
+Kontex - V2 - Idea
+Version-controlled collaborative intelligence. One source of truth, for the entire life of your idea.
+
+The Problem
+Every time you move a project forward, you lose something.
+You brainstorm with an AI. The decision lives in the chat. You open a new window to design — context gone. You hand it to a developer or a coding agent — you re-explain everything. You bring in a collaborator — they swap summaries manually, copy-pasting understanding between chat windows like it's 2005.
+The idea exists. The decisions exist. The intent exists. But they live in fragments — chat logs, markdown files nobody updates, and people's heads. Every phase transition is a lossy compression of everything that came before.
+The cost isn't just inefficiency. It's drift. The code stops matching the idea. The team stops sharing understanding. The product ships as a shadow of what was intended.
+
+What Kontex Is
+Kontex is a single source of truth that travels with your idea — from first thought to shipped product — and updates itself at every stage.
+It is not a document. It is not a wiki. It is not agent memory.
+It is a living, version-controlled context layer that sits between your people, your AI agents, and your codebase — and keeps them all aligned.
+At ideation — two people, two AI sessions, collaborating. Kontex captures decisions, syncs understanding, no manual summarisation.
+At design — APIs get defined, tech stack gets chosen. The same context, evolved. No new document. No fresh explanation.
+At development — coding agents read from Kontex. They already know the intent, the constraints, the decisions. When they make implementation choices, they write back.
+At testing — checks run against the spec. Not just unit tests. Alignment checks. Does the code match the intent that started this whole thing?
+No stage re-explains context. No stage loses what came before. The context travels. It accumulates. It stays true.
+
+Already In Progress? Start From Where You Are.
+Not every project starts fresh. If you have already done the hard work — summarising conversations, pasting context between tools, manually maintaining a decision file — Kontex does not ask you to start over.
+Upload your existing artifacts. Your summaries, your specs, your notes, your chat exports. Kontex ingests them, structures them, and from that point forward takes over the maintenance. The manual work you have already done becomes the foundation. Everything after that is automatic.
+
+How It Works
+Spaces
+A project in Kontex is made of Spaces. Each Space has a purpose — conversational, design, code, testing — and stores context in a structure appropriate to that purpose. A conversational space captures intent and reasoning. A code space captures implementation decisions, APIs, and constraints. A testing space captures coverage, validation rules, and alignment checks.
+Kontex ships with pre-built Spaces for common workflows. If your project doesn't fit the defaults, you define your own Space with your own schema. The structure is yours. As more teams use Kontex, better Space designs will emerge — and the best ones become the new defaults.
+Spaces can be connected. A coding agent with access to the code space can query a connected conversational space for the original intent behind a decision — without having write access to it. What you can read, what you can write, and what you can merge are all controlled independently, per Space, per role.
+The Socket Model
+Every action in Kontex is a socket. Raising a PR is a socket. Merging a PR is a socket. Querying a Space is a socket. Creating a branch is a socket. These sockets are exposed as tools in an MCP server — meaning any agent, any interface, any tool that speaks MCP can connect to Kontex.
+Kontex does not care what is plugging into the socket. A human using a dashboard, a coding agent mid-implementation, a conversational agent in a brainstorming session, a master orchestrator managing sub-agents — they are all just plugs. The socket enforces the rules. The plug just acts within them.
+When something connects to Kontex, it is assigned a role. The role determines which sockets are available. Without the right role, the socket does not respond. Access is not configured per agent or per tool — it is configured per role, and roles are assigned to whoever or whatever connects.
+Authority and Governance
+Kontex has two levels of authority.
+Level 1 — The Owner. Always a human. Has full, unconditional control over the entire project. Their permissions cannot be revoked, changed, or overridden by anyone. This is the constitutional layer. The project exists because this person created it.
+Level 2 — The Master. Can be a human or an agent. Has full operational control over everything below them — assigning roles, managing spaces, approving merges, configuring connections. Level 1 can revoke or modify Level 2 at any time. Everything else in the project flows from what Level 2 permits.
+What happens within that structure is the responsibility of whoever holds the Level 2 role. Kontex provides the framework. Accountability for how it is used sits with the people who configure it.
+Version Control as the Source of Truth
+Every change in Kontex is a commit. Every commit has an author, a timestamp, and a diff. Every role assignment is a commit. Every merge decision is a commit. The full history of the project — not just the content, but the governance — lives in the version history permanently.
+Nothing is deleted. Everything is recoverable. If a decision needs to be reversed, you roll back. If you want to understand why something changed, you read the history. There is no separate audit system because the version history already is the audit system.
+
+The Git Insight
+Kontex is built on version control — not because developers like Git, but because branching is a thinking methodology.
+You start with a shared context. Three people take it and deliberately diverge — each exploring a different direction with their own AI agents, in maximum freedom, without threatening the shared truth. Then they converge. The merge is where insight happens. The diff between branches is the innovation.
+This makes productive disagreement a first-class feature. You are not fighting over the main branch. You are supposed to diverge. The system expects it.
+Authority lives in the trunk. Exploration lives in branches. History is permanent. Nothing is lost.
+
+The Queryable Pitch
+When someone new enters your project — an investor, a collaborator, a new developer, a reviewer — you have two options today. You spend an hour walking them through everything. Or you hand them a document and hope they read it.
+Both are bad. The walkthrough doesn't scale. The document doesn't answer follow-up questions.
+Kontex is a third option. Connect them to the shared context, and let them interrogate it directly. They ask whatever they want, as deep as they want, for as long as they want. Kontex answers — with the full decision history, the original reasoning, the branch that was tried and abandoned, and why.
+You don't have to be in the room.
+An investor asks why you chose this architecture — Kontex answers. A new developer asks why a decision was made three weeks ago — Kontex traces it back to the conversation where that call was made. A collaborator asks where the idea came from — Kontex shows the first branch.
+The context doesn't just store truth. It explains itself.
+
+Who This Is For
+Founders and builders who want to own the design without owning the code
+Small teams running multiple AI agents across a project
+Collaborators — teachers, researchers, consultants — who are manually swapping summaries between AI sessions today
+Investors and reviewers who need to understand a project deeply, on their own time
+New team members who shouldn't need a two-hour onboarding call to get up to speed
+Anyone whose idea has ever arrived at production looking nothing like what was intended
+
+Honest Limitations
+The filter problem requires exploration. Not everything said in a brainstorm deserves to be in the context. The agent has to distinguish signal from noise. The right approach here will be shaped by how real teams actually work — and that needs to be learned, not assumed.
+Space schemas are not yet standardised. The pre-built Spaces Kontex ships with will evolve as more projects run through them. The right structure for a conversational space, a design space, or a testing space is not something to prematurely commit to — it will be refined through real usage and industry practice.
+Querying across connected Spaces is an open design problem. How an agent queries a differently-structured space and gets a useful, coherent answer is a technically interesting problem. The approach will be informed by existing industry work on cross-schema querying and agent communication patterns.
+Drift is possible but recoverable. If the codebase moves faster than the context updates, the source of truth lags behind. Kontex surfaces this through change-triggered checks and periodic alignment prompts — but the version history means any drift is visible and any state is recoverable.
+Setup is a real ask — once. Connecting Kontex to your workflow requires an initial configuration. After that, the system prompts the user at the right moments. But the first step is not zero friction.
+
+The Bet
+Every tool in this space is a snapshot. A file, a doc, a chat log — frozen at the moment it was written.
+Kontex is a living record. One continuous thread from first idea to shipped product. Queryable by anyone, writable by agents, governed by humans, recoverable at any point in history.
+Nobody has built that yet.
+
+Kontex — April 2026
+
